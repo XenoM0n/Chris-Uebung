@@ -1,0 +1,103 @@
+import java.util.*
+
+fun main(args: Array<String>) {
+    Spielzug()
+}
+
+fun Spielzug(){
+    var end = false
+    var Winner: String = ""
+
+    var Spieler:  Int = Wurf()
+    print("Spieler würfelt: $Spieler | ")
+    var Computer: Int = Wurf()
+    println("Computer würfelt: $Computer")
+
+
+    var Spieler_Second:  Int = 0
+    var Computer_Second: Int = 0
+
+    var SBlock: Boolean = false
+    var CBlock: Boolean = false
+
+
+    while(!end){
+        if (Spieler == 21){
+            end = true
+            Winner = "Spieler"
+            break
+        }
+        else if (Computer == 21){
+            end = true
+            Winner = "Computer"
+            break
+        }
+
+        if (SBlock && CBlock) break
+        if (!SBlock) {Spieler_Second  = Wurf(); println("Spieler  würfelt erneut: $Spieler_Second")}
+        if (!CBlock) {Computer_Second = Wurf(); println("Computer würfelt erneut: $Computer_Second")}
+
+        if (bessererWert(Spieler,Spieler_Second))  {
+            println("Spielers neuer Wert ist größer - neuer Wert: $Spieler_Second")
+            Spieler = Spieler_Second
+        }
+        else {SBlock = true}
+        if (bessererWert(Computer,Computer_Second)){
+            println("Computers neuer Wert ist größer - neuer Wert: $Computer_Second")
+            Computer = Computer_Second
+        }
+        else {CBlock = true}
+    }
+
+    if (Winner == ""){
+        when (bessererWert(Spieler, Computer)){
+            true  -> Winner = "Computer"
+            false -> Winner = "Spieler"
+        }
+    }
+
+    println("\nThe Winner is: $Winner")
+}
+
+fun bessererWert(alterWert: Int, neuerWert: Int): Boolean{
+    //Sonderfall Meier - ist immer am Höchsten
+    if (neuerWert == 21){return true}
+
+    //nachgucken ob eine Zahl ein Pasch ist
+    if (alterWert/10 == alterWert % 10){ //Zahl wird immer abgerundet 55/10 = 5.5 -> 5 abgerundet
+        if (neuerWert/10 == neuerWert % 10){
+            return neuerWert > alterWert
+        }
+        return false
+    }
+    else if (neuerWert/10 == neuerWert % 10) return true
+
+    //beide Zahlen sind nicht Prim
+    return neuerWert > alterWert
+
+    /*
+    //kann man auch kürzer fassen
+    if(neuerWert == 21){return true}
+    if(alterWert/10 == alterWert && !(neuerWert/10 == neuerWert)){return true}
+    return neuerWert > alterWert
+     */
+}
+
+fun Wurf(): Int{
+    val Zahl1 = dice()
+    val Zahl2 = dice()
+
+    if (Zahl1 > Zahl2){
+        return Zahl1*10 + Zahl2
+    }
+
+    return Zahl2*10 + Zahl1
+}
+
+fun dice(): Int{
+    val random: Random = Random()
+    var x: Int = random.nextInt(6)
+
+
+    return x+1
+}
