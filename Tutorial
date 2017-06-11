@@ -43,6 +43,16 @@ fun main(args: Array<String>){
     // jetzt wollen wir aber eine Rechnung auslagern und brauchen einen Rückgabewert
     // eine Funktion mit Rückgabewert können wir übrigens nicht einfach so schreiben - wir müssen den Rückgabewert schon benutzen
     s[1] = dice()
+
+    //jetzt wollen wir einer Funktion einen Wert übergeben
+    s[2] = higherNumber(s[0],s[1])
+
+    //jetzt wollen wir in weitere Stellen im Array schreiben, aber er ist voll, daher brauchen wir einen neuen
+    var neuerS: IntArray = IntArray(6) // und doppelt so groß 😈
+
+    // jetzt fehlen aber die alten Objekte, aber wir können uns eine Funktion schreiben, die
+    // den Array bekommt und einen neuen ausspuckt um ihn dem alten zuzuweisen.😵
+    neuerS = arrayÜbergabe(s, neuerS.size)    // wir müssen ja die länge des neuen Arrays wissen. Nicht, dass wir jetzt etwas mit den anderen Elementen tun
 }
 
 fun test(){
@@ -57,6 +67,28 @@ fun dice(): Int{ //: Int sagt jetzt welcher Typ es ist - kann auch irgendein Obj
     return rdm.nextInt(6)+1    // *return* gibt den Wert der dahinter steht zurück und springt aus der Funktion
                                // zurück zum anderen Code. rdm ist dein Objekt vom Typ random und mit dem Punkt kommst
                                // du an die Funktionen, die das Objekt ausführen soll
-                               // nextInt erstellt eine zufällige Zahl zwischen (0,1,...,n-1) das heißt bei 6 
+                               // nextInt erstellt eine zufällige Zahl zwischen (0,1,...,n-1) das heißt bei 6
                                // zwischen 0 und 5 - mit +1 dahinter dann zwischen 1 und 6
+}
+
+fun higherNumber(s1: Int,s2: Int): Int{ //so wir bekommen jetzt zwei Zahlen s1 und s2 vom Typ Int
+
+    if (s1 > s2)       {return s1} // wie ein if Statement funktioniert ist ganz simpel
+    else if (s1 == s2) {return s2} // das else ist nur da, damit du weißt, dass man das einfach dahinter schreiben kann
+    else               {return s2} // das mit dem else if genauso - ist gerade aber alles sehr redundant
+}
+
+fun arrayÜbergabe(alterS: IntArray,längeDesNeuen: Int): IntArray{  // hatten wir ja schon. Jetzt eben nur mit IntArray als Typ
+    var neuerS: IntArray = kotlin.IntArray(längeDesNeuen)
+    
+    // jetzt ist es ein bisschen komplizierter
+    // wir benutzen einen for loop und wie wir den schreiben ist definitiv anders als bei vielen Programmiersprachen
+    // wir erstellen eine beliebige Variabel, in dem Fall x. Dann sagen wir 'in' um ein Intervall anzugeben
+    // das geht jetzt von 0 bis die Länge und zählt das letzte Element mit
+    // das heißt (y in 0..10) zählt 0,1,2,3,4,5,6,7,8,9,10 
+    for (x in 0..alterS.size-1){
+        neuerS[x] = alterS[x]
+    }
+    
+    return neuerS
 }
