@@ -1,0 +1,16 @@
+import java.util*
+
+//das ist die Main Methode. Sie wird als einzige aufgerufen und ohne sie läuft nichts
+fun main(args: Array<String>) {
+
+}
+
+
+//das würfelt für dich. Brauchst du nicht weiter beachten
+fun dice(): Int{
+    val random: Random = Random()
+    var x: Int = random.nextInt(6)
+
+
+    return x+1
+}
