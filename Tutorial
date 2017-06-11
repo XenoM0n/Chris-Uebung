@@ -1,0 +1,62 @@
+// das ist ein showcase von Kotlin
+
+//hiermit integrierst du Libraries um z.B. bestimmte Befehle oder Objekte nutzen zu können
+//sie gehhören immer über irgendwas
+import java.util
+import java.util.*
+
+/**
+ * class Tutrial{
+ * -> das ist theoretisch eine Klasse und hier schreibst du den ganzen Code rein(normalerweise!), aber
+ *    wir brauchen nur den Playground und arbeiten noch nicht mit externen Klassen ;)
+ * }
+ * **/
+
+// eine fun deklariert eine Methode, die du aufrufen kannst und dann irgendwas tut
+// das in der Klammer ist der Parameter, den du dieser Funktion übergiebst
+// eine main Funktion wird *IMMER* so geschrieben, sie wird definitiv aufgerufen, daher verwaltest du den Code von hier aus
+fun main(args: Array<String>){
+    // eine print Befehl ist recht simpel. Es ist eine schon vorhandene Funktion, die einen String nimmt und ihn in der
+    // Console ausgiebt - println macht dann noch einen Zeilenumbruch dahinter
+    print("Hello World - ")
+    println("Siehst du ?")
+    // Manuell kannst du es auch mit diesem \n machen
+    print("\n")
+
+    var x: Int = 5 //wir hatten ja schon Typen - so erstellst du sie nochmal, als Tipp ;)
+    var y = intArrayOf(1,2,3) // wenn du extrem faul sein willst bei einem Array
+
+    //um einen Array zu erstellen gibt es aber in manchen Fällen mehr Einzelschritte
+    var r: Array<Int> // gelesen: du erstellst eine Variabel(var) vom Typen Array(: Array), welcher Objekte
+                      // vom Typ Integer enthält(<Int>), r. <- aber so ist es halt ein Objekt vom Typ Integer ;3
+
+    var s: IntArray   // jetzt ist es eben kein Zeiger auf ein Objekt vom Typ Integer, sondern ein Integer
+                      // versuche es so zu machen, wenn du mit Integern arbeitest
+
+    s = IntArray(3)   // jetzt sagst du erst welche Größe der hat und das MUSST du immer tun bevor du irgendwas mit dem machen willst
+    s[0] = 1          // mit den eckigen Klammern gehst du auf das Element an der 0. Stelle und weist dem dann 1 zu
+
+    // jetzt gucken wir uns Funktionen an - hier musst du im Code aus der jetztigen Funktion raus
+    // der Befehl hier ruft den jetzt auf und springt an die Stelle im Code
+    test()
+
+    // jetzt wollen wir aber eine Rechnung auslagern und brauchen einen Rückgabewert
+    // eine Funktion mit Rückgabewert können wir übrigens nicht einfach so schreiben - wir müssen den Rückgabewert schon benutzen
+    s[1] = dice()
+}
+
+fun test(){
+    print("Die Funktion wurde aufgerufen.")
+}
+
+fun dice(): Int{ //: Int sagt jetzt welcher Typ es ist - kann auch irgendein Objekt vom Typ Luca sein später ;)
+    // jetzt benutzen wir die Library, die wir oben eingefügt haben
+
+    val rdm: Random = Random() // - das erstellt ein Objekt Random von Java, es hat verschiedene Funktionen auf die man zugreifen kann
+
+    return rdm.nextInt(6)+1    // *return* gibt den Wert der dahinter steht zurück und springt aus der Funktion
+                               // zurück zum anderen Code. rdm ist dein Objekt vom Typ random und mit dem Punkt kommst
+                               // du an die Funktionen, die das Objekt ausführen soll
+                               // nextInt erstellt eine zufällige Zahl zwischen (0,1,...,n-1) das heißt bei 6 
+                               // zwischen 0 und 5 - mit +1 dahinter dann zwischen 1 und 6
+}
