@@ -2,7 +2,6 @@
 
 //hiermit integrierst du Libraries um z.B. bestimmte Befehle oder Objekte nutzen zu können
 //sie gehhören immer über irgendwas
-import java.util
 import java.util.*
 
 /**
@@ -53,10 +52,49 @@ fun main(args: Array<String>){
     // jetzt fehlen aber die alten Objekte, aber wir können uns eine Funktion schreiben, die
     // den Array bekommt und einen neuen ausspuckt um ihn dem alten zuzuweisen.😵
     neuerS = arrayÜbergabe(s, neuerS.size)    // wir müssen ja die länge des neuen Arrays wissen. Nicht, dass wir jetzt etwas mit den anderen Elementen tun
+
+    // eine while Schleife ist ziemlich simpel. Sie führt solange etwas aus bis die Bedingung nicht mehr erfüllt ist
+    while (s[1] != 6){
+        s[1] = dice()
+        print("| noch immer keine 6 |")
+    }   // also würfelt der jetzt bis er eine Sechs hat
+
+    // wir sind bald am Ende 😥 - es fehlt aber noch ein when Statement
+    // sagen wir wir wollen, dass unser Programm führ jede gewürfelte Zahl etwas anderes ausgeben soll
+    var geDiced: Int = dice() // oh man geDiced 😂
+
+    when (geDiced){
+        1 -> println("Du hast eine eins gewürfelt.")
+        2 -> println("Du hast eine zwei gewürfelt.")
+        3 -> println("Du hast eine drei gewürfelt.")
+        4 -> println("Du hast eine vier gewürfelt.")
+        5 -> println("Du hast eine fünf gewürfelt.")
+        6 -> println("Du hast eine sechs gewürfelt.")
+
+        // eigentlich sind alle Fälle abgedegt, aber falls nicht gibt es den genialen default
+        else -> throw Exception("Irgendwas ist falsch.")
+        // weil es eigentlich nicht passieren sollen throwen wir eine Exception um den Fehler dann zu identifizieren
+        // ist aber noch unwichtig für dich
+    }
+
+    // und jetzt wirklich das letzte 😇 .......... Casten
+
+    // nehmen wir an wir haben einen Integer
+    var unserInteger: Int = 6
+
+    // aber wir brauchen einen double um weiterzumachen, dann können wir eben casten
+    // das geht nicht immer - zb. gibt es Objekte, die vollkommen anders sind zu anderen
+    // naja wie geht das Casten ?
+    // ganz einfach - du schreibst *as*
+    var unserDouble: Long = unserInteger as Long // das ist aber unsicher
+
+    /* if (unserInteger as Long is Long){
+    } */
+    // casten wirst du aber wahrscheinlich selten nutzen 😅
 }
 
 fun test(){
-    print("Die Funktion wurde aufgerufen.")
+    println("Die Funktion wurde aufgerufen.")
 }
 
 fun dice(): Int{ //: Int sagt jetzt welcher Typ es ist - kann auch irgendein Objekt vom Typ Luca sein später ;)
@@ -80,15 +118,15 @@ fun higherNumber(s1: Int,s2: Int): Int{ //so wir bekommen jetzt zwei Zahlen s1 u
 
 fun arrayÜbergabe(alterS: IntArray,längeDesNeuen: Int): IntArray{  // hatten wir ja schon. Jetzt eben nur mit IntArray als Typ
     var neuerS: IntArray = kotlin.IntArray(längeDesNeuen)
-    
+
     // jetzt ist es ein bisschen komplizierter
     // wir benutzen einen for loop und wie wir den schreiben ist definitiv anders als bei vielen Programmiersprachen
     // wir erstellen eine beliebige Variabel, in dem Fall x. Dann sagen wir 'in' um ein Intervall anzugeben
     // das geht jetzt von 0 bis die Länge und zählt das letzte Element mit
-    // das heißt (y in 0..10) zählt 0,1,2,3,4,5,6,7,8,9,10 
+    // das heißt (y in 0..10) zählt 0,1,2,3,4,5,6,7,8,9,10
     for (x in 0..alterS.size-1){
         neuerS[x] = alterS[x]
     }
-    
+
     return neuerS
 }
