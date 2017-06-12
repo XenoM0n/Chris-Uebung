@@ -1,0 +1,62 @@
+/**
+ * Jetzt lernst du zum ersten Mal wieso man Klassen erstellt und wie wichtig das sein kann ;)
+ * Ganz simpel ist das KeyWord für eine Klasse einfach *class*
+ **/
+
+
+/*class Bicycle {
+    // Klassen haben meist eigene Variablen, diese heißen Objektvariabeln, weil sie für das ganze Objekt gelten
+
+    // the Bicycle class has three fields
+    var cadence: Int = 0
+    var gear: Int = 0
+    var speed: Int = 0
+
+    // the Bicycle class has one constructor
+    constructor(startCadence: Int, startSpeed: Int, startGear: Int) {
+        gear = startGear
+        cadence = startCadence
+        speed = startSpeed
+    }
+
+}*/
+// in Kotlin ist der Primary Constructor aber ein bisschen anders daher fangen wir von vorne an
+// wobei das oben nicht falsch ist, es geht eben kürzer und syntaktisch schöner
+
+// mit dem open erlauben wir es anderen Klassen zu erben und das solltest du an dem O daneben sehen
+// das heißt, dass von dieser Klasse geerbt wird
+open class Bicycle(startCardence: Int, startSpeed: Int, startGear: Int){
+    // alles oben gehört jetzt zum primary Constructor
+    // das heißt jetzt, wenn wir eine Klasse Bike erstellen müssen wir diese 3 Werte mit angeben
+
+    //aber jetzt erst übertragen wir sie auf die lokalen Variabeln (Objektvariabeln)
+    // -> das besondere ist, dass wir in jeder Funktion direkt darauf zugreifen können ohne etwas zu übergeben 👌
+
+    private var Cardence: Int = startCardence
+    private var Speed:    Int = startSpeed
+    private var Gear:Int = startGear
+
+    // ich habe die Variabeln jetzt auf private gesetzt, damit ich nicht von außerhalb irgendwas kaputt machen kann
+    // aber ich möchte trotzdem darauf zugreifen, deshalb schreibe ich geter und seter Funktionen. Simpel 🙌
+
+    fun getCardense(): Int{return this.Cardence}
+    fun getSpeed():    Int{return this.Speed}
+    fun getGear():     Int{return this.Gear}
+
+    fun setCardense(newCardens: Int){this.Cardence = newCardens}
+    fun setSpeed(newSpeed: Int)     {this.Speed    = newSpeed}
+    fun setGear(newGear: Int)       {this.Gear     = newGear}
+
+    // jetzt wollen wir noch die Funktionen Break(Bremse :P) und speedUp(schneller werden) implementieren
+    // - break ist ein Schlüsselwort -> daher applyBreak
+
+    fun applyBreak(){
+        this.Speed -= 2 // wird um zwei langsamer
+    }
+
+    fun speedUp(){
+        this.Speed += 1 // wird um eins schneller 😱
+    }
+
+    // dann schreiben wir jetzt die zweite Klasse, die von eins erben soll - also gehen wir zum Mountainbike
+}
