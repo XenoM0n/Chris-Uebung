@@ -1,0 +1,16 @@
+// naja das wirkt jetzt ziemlich chaotisch, aber im Prinzip ist das einfach
+// die erbende Klasse hat auch einen Constructor und er *muss* den von der Mutterklasse abdecken, aber
+// kann eben auch noch mehrere haben - mit :Bicycle sagen wir dann, dass er von Bicycle erben soll
+// und da Bicycle einen Constructor hat müssen wir den noch füllen ... und voila 🐬
+class Mountainbike(startHeight: Int,startCardence: Int, startSpeed: Int, startGear: Int): Bicycle(startCardence,startSpeed,startGear){
+    // hier haben wir jetzt noch eine zusätzliche Sitzhöhe und damit mehr als noch in der Mutterklasse
+    private var seatHeight: Int = startHeight
+    // wichtig dabei ist, dass alles von der Mutterklasse automatisch jetzt auch hier ist
+
+    // jetzt geben wir dem Mountainbike einfach noch einen Setter für die Sitzhöhe
+    fun setHeight(newValue: Int) {
+        seatHeight = newValue
+    }
+
+    // es gibt immernoch das Schlüsselwort Super - das ändert etwas in der Mutterklasse - so als Tipp ;)
+}
